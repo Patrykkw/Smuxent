@@ -1,5 +1,6 @@
 import platform
 import importlib
+import sys
 
 __doc__ = """ 
 Smuxent - A lightweight native threading utility for Python.
@@ -63,11 +64,13 @@ Feedback and suggestions are welcome though not sure where that'd be.
 def _detect_thread_module_name():
     system = platform.system()
     arch = platform.architecture()[0]
+    pyver = f"{sys.version_info.major}{sys.version_info.minor}"
 
     if system != "Windows":
-        raise ImportError("smuxent only supports Windows for now.")
+        raise ImportError("Smuxent only supports Windows for now.")
 
-    return "ThreadWin64" if "64" in arch else "ThreadWin32"
+    suffix = "64" if "64" in arch else "32"
+    return f"py{pyver}ThreadWin{suffix}"
 
 # Import the correct native module
 _threadmod = importlib.import_module(f"smuxent.{_detect_thread_module_name()}")
