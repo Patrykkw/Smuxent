@@ -65,12 +65,12 @@ def _detect_thread_module_name():
     arch = platform.architecture()[0]
 
     if system != "Windows":
-        raise ImportError("Smuxent only supports Windows for now.")
+        raise ImportError("smuxent only supports Windows for now.")
 
     return "ThreadWin64" if "64" in arch else "ThreadWin32"
 
 # Import the correct native module
-_threadmod = importlib.import_module(f"Smuxent.{_detect_thread_module_name()}")
+_threadmod = importlib.import_module(f"smuxent.{_detect_thread_module_name()}")
 
 # Optional: expose functions directly through smuxent
 basic_thread = _threadmod.basic_thread
