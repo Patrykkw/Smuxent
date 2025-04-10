@@ -3,6 +3,8 @@ v0.0.2
 **Smuxent** is a lightweight native threading module for Python, backed by C++ and pybind11.  
 It allows you to easily launch background threads in Python using true native threads — with cooperative control and ID tracking.
 
+You can view it on PYPI at this link: https://pypi.org/project/smuxent/
+
 This project was built for fun, learning, and utility. If you're using this, thanks!
 Feedback and suggestions are welcome though not sure where that'd be.
 
