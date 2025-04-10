@@ -1,5 +1,5 @@
 # Smuxent
-v0.0.2a1
+v0.0.2
 **Smuxent** is a lightweight native threading module for Python, backed by C++ and pybind11.  
 It allows you to easily launch background threads in Python using true native threads — with cooperative control and ID tracking.
 
@@ -13,7 +13,9 @@ Feedback and suggestions are welcome though not sure where that'd be.
 ## What It Does
 
 - Run Python functions in detached threads
+- Create and run thread pools
 - Track threads by ID
+- Submit tasks to said thread pools
 - Kill individual threads or all running threads
 - Track thread IDs and check if they are alive
 - Automatically loads the correct native extension based on system architecture
@@ -40,6 +42,8 @@ thread_id = basic_thread(my_func)  # runs my_func() on another thread, returning
 
 ```python
 
+# === v0.0.1 - Basic Threading ===
+
 def basic_thread(func: Callable, *args: Any) -> int: ...
 def hello_thread(loop_count: int = 1) -> int: ...
 
@@ -48,6 +52,13 @@ def kill_thread(id: int) -> None: ...
 def kill_all_threads() -> None: ...
 def get_all_thread_ids() -> List[int]: ...
 
+# === v0.0.2 - Thread Pools ===
+
+def thread_pool(size: int) -> str: ...
+def submit(pool_id: str, func: Callable, *args: Any) -> bool: ...
+def get_pool_thread_ids(pool_id: str) -> List[int]: ...
+def kill_pool(pool_id: str) -> None: ...
+
 # === Deprecated / Legacy Functions ===
 
 def __basic_threadOld(func: Callable, *args: Any) -> None:
@@ -55,5 +66,6 @@ def __basic_threadOld(func: Callable, *args: Any) -> None:
 
 def __hello_threadOld(loop_count: int = 1) -> None:
     """[Deprecated] Use hello_thread instead. This version does not support thread tracking."""
+
 
 ```
